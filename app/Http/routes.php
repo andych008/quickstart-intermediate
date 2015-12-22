@@ -32,3 +32,4 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');
 
 
 Route::get('bs/{tag}', 'BSDemoController@demo');
+Route::post('bs/t1', 'BSDemoController@up');

@@ -54,18 +54,91 @@
                 <p><code>{{ '<code>'}}</code>和<code>{{ '<pre>'}}</code>的使用：<pre>
 {{ '<div class="panel panel-default">
     <div class="panel-heading">
-
     </div>
     <div class="panel-body">
-
     </div>
 </div>'}}
-                    </pre>
-
-
+</pre>
                 </p>
             </div>
         </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                table
+            </div>
+            <div class="panel-body">
+                <table class="table table-striped table-bordered table-condensed">
+                    <thead>
+                    <tr>
+                        <th>name</th>
+                        <th>gender</th>
+                        <th>age</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>andy</td>
+                        <td>男</td>
+                        <td>28</td>
+                    </tr>
+                    <tr>
+                        <td>tomy</td>
+                        <td>男</td>
+                        <td>29</td>
+                    </tr>
+                    <tr>
+                        <td>Lily</td>
+                        <td>女</td>
+                        <td>23</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                表单
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal" action="t1" method="post">
+                    {{csrf_field()}}
+                    <div class="form-group">
+                        <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control" name="inputEmail" id="inputEmail" placeholder="Email">
+                            <span>请输入邮箱</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword" class="col-sm-2 control-label">Password</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" name="inputPassword"  id="inputPassword" placeholder="Password">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <input type="submit" class="btn btn-default"/>
+                        </div>
+                    </div>
+                </form>
+                <div class="bg-info">
+                    @if (isset($request) && $request->isMethod('post'))
+                        @foreach($request->except('_token') as $post)
+                            <p>{{ substr($post, 0, 100) }}</p>
+                        @endforeach
+
+                        {{implode($request->all())}}
+                    @else
+                        在这里显示提交内容
+                    @endif
+                </div>
+
+
+            </div>
+        </div>
+
 
     </div>
 @stop

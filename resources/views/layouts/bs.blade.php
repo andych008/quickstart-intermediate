@@ -44,9 +44,5 @@
 
 @yield('content')
 
-$(document).ready(function(){
-prettyPrint();
-})
-
 </body>
 </html>
