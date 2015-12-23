@@ -11,11 +11,13 @@ class BSDemoController extends Controller
 {
     public function demo($tag)
     {
-        if ($tag == 't1') {
-            return view('bs.t1');
-            } else {
-            return "aaaa";
-        }
+//        if ($tag == 't1') {
+//            return view('bs.t1');
+//        } else {
+//            return "aaaa";
+//        }
+
+        return view('bs.'.$tag);
     }
 
     public function up(Request $request)
@@ -25,8 +27,7 @@ class BSDemoController extends Controller
             'inputPassword' => 'required',
         ]);
 
-
-        return view('bs.t1', [
+        return view('bs.up', [
             'request' => $request,
         ]);
     }
