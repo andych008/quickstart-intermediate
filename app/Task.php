@@ -21,4 +21,8 @@ class Task extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public  function scopeLike($query, $field, $value){
+        return $query->where($field, 'LIKE', "%$value%");
+    }
 }

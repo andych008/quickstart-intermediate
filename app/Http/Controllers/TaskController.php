@@ -43,6 +43,18 @@ class TaskController extends Controller
         ]);
     }
 
+    public function show(Request $request, $id)
+    {
+        $task = $this->tasks->forUserById($request->user(), $id);
+        print $task;
+    }
+
+    public function search(Request $request, $name)
+    {
+        $task = $this->tasks->forUserByName($request->user(), $name);
+        print $task;
+    }
+
     /**
      * Create a new task.
      *
