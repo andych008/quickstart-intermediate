@@ -35,3 +35,6 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');
 
 Route::get('bs/{tag}', 'BSDemoController@demo');
 Route::post('bs/up', 'BSDemoController@up');
+Route::get('error1024', function () {
+	abort(403, '测试1024');
+});

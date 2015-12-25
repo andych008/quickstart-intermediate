@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Task;
 use App\Http\Requests;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Repositories\TaskRepository;
+use Illuminate\Support\Facades\Response;
 
 class TaskController extends Controller
 {
@@ -38,21 +38,31 @@ class TaskController extends Controller
      */
     public function index(Request $request)
     {
+        //总共4种写法，传递参数给view
         return view('tasks.index', [
             'tasks' => $this->tasks->forUser($request->user()),
         ]);
+
+//        $tasks = $this->tasks->forUser($request->user());
+//        $arg2 = "第二个参数，只是示例";
+//        return view('tasks.index', compact('tasks', 'arg2'));//接受多个参数
+
+//        return view('tasks.index')->with('tasks', $this->tasks->forUser($request->user()));
+
+//        return view('tasks.index')->with(['tasks' => $this->tasks->forUser($request->user())]);
     }
 
     public function show(Request $request, $id)
     {
         $task = $this->tasks->forUserById($request->user(), $id);
-        print $task;
+        return view('tasks.show', ['task'=> $task]);
     }
 
     public function search(Request $request, $name)
     {
         $task = $this->tasks->forUserByName($request->user(), $name);
-        print $task;
+//        print $task->toJson();
+        return Response::json($task);
     }
 
     /**
@@ -69,6 +79,7 @@ class TaskController extends Controller
 
         $request->user()->tasks()->create([
             'name' => $request->name,
+            'content' => $request->input('content'),
         ]);
 
         return redirect('/tasks');

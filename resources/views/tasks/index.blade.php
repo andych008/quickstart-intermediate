@@ -18,11 +18,21 @@
 
 						<!-- Task Name -->
 						<div class="form-group">
-							<label for="task-name" class="col-sm-3 control-label">Task</label>
+							<label for="task-name" class="col-sm-3 control-label">Title</label>
 
 							<div class="col-sm-6">
 								<input type="text" name="name" id="task-name" class="form-control" value="{{ old('task') }}">
 							</div>
+						</div>
+
+						<!-- Task Content -->
+						<div class="form-group">
+							<label for="task-content" class="col-sm-3 control-label">Content</label>
+
+                            <div class="col-sm-6">
+                                <textarea name="content" id="task-content" id="" cols="30"
+                                          rows="10" value="{{ old('task') }}" class="form-control"></textarea>
+                            </div>
 						</div>
 
 						<!-- Add Task Button -->
@@ -53,7 +63,23 @@
 							<tbody>
 								@foreach ($tasks as $task)
 									<tr>
-										<td class="table-text"><div>{{ $task->name }}</div></td>
+										<td class="table-text">
+											<div><a href="/tasks/{{$task->id}}">{{ $task->name }}</a></div>
+										</td>
+										<td class="table-text">
+											<div><a href="{{url('tasks',$task->id)}}">{{ $task->name }}</a></div>
+										</td>
+										 {{--推荐这种，把路由信息分离 --}}
+										<td class="table-text">
+											<div>
+												<a href="{{action("TaskController@show", $task->id)}}">{{ $task->name }}</a>
+											</div>
+										</td>
+										<td class="table-text">
+											<div>
+												<a href="{{action("TaskController@show", [$task->id])}}">{{ $task->name }}</a>
+											</div>
+										</td>
 
 										<!-- Task Delete Button -->
 										<td>
