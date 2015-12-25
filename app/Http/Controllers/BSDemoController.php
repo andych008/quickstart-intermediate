@@ -32,6 +32,18 @@ class BSDemoController extends Controller
         ]);
     }
 
+    public function up2(Request $request)
+    {
+        $this->validate($request, [
+            'inputEmail' => 'required',
+            'inputPassword' => 'required',
+        ]);
+
+        return view('bs.up2', [
+            'request' => $request,
+        ]);
+    }
+
     /**
      * Display a listing of the resource.
      *
