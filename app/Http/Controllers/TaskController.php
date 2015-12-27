@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Task;
 use App\Http\Requests;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Repositories\TaskRepository;
 use Illuminate\Support\Facades\Response;
@@ -58,6 +59,12 @@ class TaskController extends Controller
         return view('tasks.show', ['task'=> $task]);
     }
 
+    public function edit(Request $request, $id)
+    {
+        $task = $this->tasks->forUserById($request->user(), $id);
+        return view('tasks.edit', ['task'=> $task]);
+    }
+
     public function search(Request $request, $name)
     {
         $task = $this->tasks->forUserByName($request->user(), $name);
@@ -77,23 +84,47 @@ class TaskController extends Controller
             'name' => 'required|max:255',
         ]);
 
+//        //不会绑定user_id
+//        Task::create($request->all());
+
+//        //finish_time有，但是不是我们想要的
+//        //$request->input('name')
+//        $request->user()->tasks()->create([
+//            'name' => $request->input('name'),
+//            'content' => $request->input('content'),
+//            'finish_time' => Carbon::now(),
+//        ]);
+
+
         $request->user()->tasks()->create([
-            'name' => $request->name,
+//            'name' => $request->name,
+            'name' => $request->input('name'),
             'content' => $request->input('content'),
+            'finish_time' => $request->input('finish_time'),
         ]);
 
         return redirect('/tasks');
     }
 
-    /**
-     * Destroy the given task.
-     *
-     * @param  Request  $request
-     * @param  Task  $task
-     * @return Response
-     */
-    public function destroy(Request $request, Task $task)
+    public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'name' => 'required|max:255',
+        ]);
+
+        $task = $this->tasks->forUserById($request->user(), $id);
+        $task->update([
+            'name' => $request->input('name'),
+            'content' => $request->input('content'),
+            'finish_time' => $request->input('finish_time'),
+        ]);
+
+        return redirect('/tasks');
+    }
+
+    public function destroy(Request $request, $id)
+    {
+        $task = $this->tasks->forUserById($request->user(), $id);
         $this->authorize('destroy', $task);
 
         $task->delete();

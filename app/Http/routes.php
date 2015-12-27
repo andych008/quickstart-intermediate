@@ -15,12 +15,15 @@ Route::get('/', function () {
 	return view('welcome');
 })->middleware('guest');
 
-// Task Routes
-Route::get('/tasks', 'TaskController@index');
-Route::get('/tasks/{id}', 'TaskController@show');
-Route::get('/tasks/find/{name}', 'TaskController@search');
-Route::post('/task', 'TaskController@store');
-Route::delete('/task/{task}', 'TaskController@destroy');
+//// Task Routes
+//Route::get('/tasks', 'TaskController@index');
+//Route::get('/tasks/{id}', 'TaskController@show');
+//Route::patch('/tasks/{id}/update', 'TaskController@update');
+//Route::patch('/tasks/{id}/edit', 'TaskController@edit');
+//Route::get('/tasks/find/{name}', 'TaskController@search');
+//Route::post('/task', 'TaskController@store');
+//Route::delete('/task/{task}', 'TaskController@destroy');
+Route::resource('tasks', 'TaskController');
 
 // Authentication Routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
@@ -36,6 +39,7 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');
 Route::get('bs/{tag}', 'BSDemoController@demo');
 Route::post('bs/up', 'BSDemoController@up');
 Route::post('bs/up2', 'BSDemoController@up2');
+Route::post('bs/up3', 'BSDemoController@up3');
 Route::get('error1024', function () {
 	abort(403, '测试1024');
 });

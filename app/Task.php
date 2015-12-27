@@ -3,6 +3,7 @@
 namespace App;
 
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
@@ -12,7 +13,8 @@ class Task extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'content'];
+    protected $fillable = ['name', 'content', 'finish_time'];
+    protected $dates = ['finish_time'];
 
     /**
      * Get the user that owns the task.
@@ -24,5 +26,11 @@ class Task extends Model
 
     public  function scopeLike($query, $field, $value){
         return $query->where($field, 'LIKE', "%$value%");
+    }
+
+    public function setFinishTimeAttribute($date)
+    {
+//        $this->attributes['finish_time'] = Carbon::createFromFormat('Y-m-d H:i:s', $date);
+        $this->attributes['finish_time'] = Carbon::createFromFormat('Y-m-d', $date);
     }
 }

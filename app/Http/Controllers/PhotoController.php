@@ -7,55 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class BSDemoController extends Controller
+class PhotoController extends Controller
 {
-    public function demo($tag)
-    {
-//        if ($tag == 't1') {
-//            return view('bs.t1');
-//        } else {
-//            return "aaaa";
-//        }
-
-        return view('bs.'.$tag);
-    }
-
-    public function up(Request $request)
-    {
-        $this->validate($request, [
-            'inputEmail' => 'required',
-            'inputPassword' => 'required',
-        ]);
-
-        return view('bs.up', [
-            'request' => $request,
-        ]);
-    }
-
-    public function up2(Request $request)
-    {
-        $this->validate($request, [
-            'inputEmail' => 'required',
-            'inputPassword' => 'required',
-        ]);
-
-        return view('bs.up2', [
-            'request' => $request,
-        ]);
-    }
-
-    public function up3(Request $request)
-    {
-        $this->validate($request, [
-            'inputEmail' => 'required',
-            'inputPassword' => 'required',
-        ]);
-
-        return view('bs.up3', [
-            'request' => $request,
-        ]);
-    }
-
     /**
      * Display a listing of the resource.
      *

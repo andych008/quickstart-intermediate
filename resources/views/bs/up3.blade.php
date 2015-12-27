@@ -16,7 +16,8 @@
                 </div>
             @endif
 
-                {!! Form::open(array('url' => action("BSDemoController@up2"), 'class' => 'form-horizontal')) !!}
+{{--                {!! Form::model($task, ['action'=>['BSDemoController@up3']]) !!}--}}
+                {!! Form::open(array('url' => action("BSDemoController@up3"), 'class' => 'form-horizontal')) !!}
                 <div class="form-group">
                     {!! Form::label('title','Email:', array('class' => 'col-sm-2 control-label')) !!}
 
@@ -35,7 +36,7 @@
                     {!! Form::label('finish_time','FinishTime:', array('class' => 'col-sm-2 control-label')) !!}
 
                     <div class="col-sm-10">
-                        {!! Form::date('finish_time', \Carbon\Carbon::now(), array('class' => 'form-control','id' => 'finish_time')) !!}
+                        {!! Form::datetimeLocal('finish_time', \Carbon\Carbon::now(), array('class' => 'form-control','id' => 'finish_time')) !!}
                     </div>
                 </div>
 
