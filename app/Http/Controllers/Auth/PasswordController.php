@@ -31,6 +31,9 @@ class PasswordController extends Controller
         $this->middleware('guest');
     }
 
+    /**
+     * 为了把登录页的email传进来，所以重写这个方法
+     */
     public function getEmail($email=null)
     {
         return view('auth.password', compact('email'));
