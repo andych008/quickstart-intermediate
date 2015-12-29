@@ -23,7 +23,7 @@ Route::get('/', function () {
 //Route::get('/tasks/find/{name}', 'TaskController@search');
 //Route::post('/task', 'TaskController@store');
 //Route::delete('/task/{task}', 'TaskController@destroy');
-Route::resource('tasks', 'TaskController');
+Route::resource('tasks', 'TaskController', ['except' => ['create']]);
 
 // Authentication Routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');

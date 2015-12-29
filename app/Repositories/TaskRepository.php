@@ -3,7 +3,6 @@
 namespace App\Repositories;
 
 use App\User;
-use App\Task;
 
 class TaskRepository
 {
@@ -15,14 +14,17 @@ class TaskRepository
      */
     public function forUser(User $user)
     {
-        return Task::where('user_id', $user->id)
+//        return Task::where('user_id', $user->id)
+//                    ->orderBy('created_at', 'asc')
+//                    ->get();
+        return $user->tasks()
                     ->orderBy('created_at', 'asc')
                     ->get();
     }
 
     public function forUserById(User $user, $id)
     {
-        $task = Task::where('user_id', $user->id)->where('id', $id)->first();
+        $task = $user->tasks()->where('id', $id)->first();
         if (is_null($task)) {
             return "没找到";
         }
@@ -31,7 +33,7 @@ class TaskRepository
 
     public function forUserByName(User $user, $name)
     {
-//        return Task::where('user_id', $user->id)->where('name', 'like', "%$name%")->get();
-        return Task::where('user_id', $user->id)->like('name', $name)->get();
+//        return $user->tasks()->where('name', 'like', "%$name%")->get();
+        return $user->tasks()->like('name', $name)->get();
     }
 }

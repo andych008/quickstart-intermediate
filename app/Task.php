@@ -2,7 +2,6 @@
 
 namespace App;
 
-use App\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,7 +13,7 @@ class Task extends Model
      * @var array
      */
     protected $fillable = ['name', 'content', 'finish_time'];
-    protected $dates = ['finish_time'];
+//    protected $dates = ['finish_time'];
 
     /**
      * Get the user that owns the task.

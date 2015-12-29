@@ -13,7 +13,7 @@ class AddFinishTimeToTasksTable extends Migration
     public function up()
     {
         Schema::table('tasks', function (Blueprint $table) {
-            $table->text('finish_time');
+            $table->timestamp('finish_time');
         });
     }
 
