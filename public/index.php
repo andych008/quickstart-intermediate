@@ -7,6 +7,8 @@
  * @author   Taylor Otwell <taylorotwell@gmail.com>
  */
 
+//die('hello');//for test myself
+
 /*
 |--------------------------------------------------------------------------
 | Register The Auto Loader
