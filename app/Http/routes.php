@@ -26,6 +26,7 @@ Route::get('/', function () {
 //Route::post('/task', 'TaskController@store');
 //Route::delete('/task/{task}', 'TaskController@destroy');
 Route::resource('tasks', 'TaskController', ['except' => ['create']]);
+Route::resource('roles', 'RoleController');
 
 Route::group(['prefix' => 'api/v1'], function () {
 //    Route::get('tasks/{id}', 'Api\v1\TaskController@show');
