@@ -48,8 +48,14 @@ class RoleController extends Controller
 
 //        dd(User::find(1)->hasRole('admin'));
 //        dd(User::find(1)->hasRole(['owner', 'admin']));
-        dd(User::find(1)->can('management'));
-//        dd(User::find(1)->may('admin.*'));
+//        dd(User::find(1)->can('management'));
+//        dd(User::find(1)->can('managemen*'));//验证不一致
+
+//        dd(User::find(1)->ability(array('admin', 'owner'), array('management2')));//验证不一致
+
+
+        return view('roles.index');
+
     }
 
     /**

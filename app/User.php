@@ -16,9 +16,9 @@ class User extends Model implements AuthenticatableContract,
                                     CanResetPasswordContract
 {
     use Authenticatable, Authorizable, CanResetPassword, EntrustUserTrait {
-//        EntrustUserTrait::can insteadof Authorizable;
-        EntrustUserTrait::can as may;
-        Authorizable::can insteadof EntrustUserTrait;
+        EntrustUserTrait::can insteadof Authorizable;
+//        EntrustUserTrait::can as may;
+//        Authorizable::can insteadof EntrustUserTrait;
     }
 
     /**
