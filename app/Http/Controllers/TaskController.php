@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Task;
 use App\Http\Requests;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Repositories\TaskRepository;
@@ -39,6 +40,10 @@ class TaskController extends Controller
      */
     public function index(Request $request)
     {
+//        dd(User::find(1)->id);
+//        dd(Task::where('user_id', '=', User::find(1)->id)->get());
+//        dd(User::find(1)->task);
+
         //总共4种写法，传递参数给view
         return view('tasks.index', [
             'tasks' => $this->tasks->forUser($request->user()),

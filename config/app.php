@@ -149,6 +149,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Collective\Html\HtmlServiceProvider::class,
+        Bican\Roles\RolesServiceProvider::class,
     ],
 
     /*
