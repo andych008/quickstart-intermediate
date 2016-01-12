@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\ApiControllers;
+namespace App\Http\Api\Controllers;
 
 use App\Http\Requests;
 use App\Repositories\TaskRepository;
