@@ -151,7 +151,8 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Bican\Roles\RolesServiceProvider::class,
         Dingo\Api\Provider\LaravelServiceProvider::class,
-        Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class
+        Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
     ],
 
     /*
